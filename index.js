@@ -2,24 +2,27 @@ const dataArray = [];
 
 function addEntry() {
 
-    entryData();
+    sortEntryData();
 
-    const entry = document.createElement("div");
-    const fistName = document.createElement("h4");
-    const lastName = document.createElement("h4");
-    const phone = document.createElement("h4");
-    const button = document.createElement("button");
-    button.innerHTML = "Remove";
+    for (const entryD of dataArray) {
 
-    entry.append(lastName);
-    entry.append(fistName);
-    entry.append(button);
+        const entry = document.createElement("div");
+        const fistName = document.createElement("h4");
+        const lastName = document.createElement("h4");
+        const phone = document.createElement("h4");
+        const button = document.createElement("button");
+        button.innerHTML = "Remove";
 
-    fistName.textContent = document.querySelector('#first-name').firstElementChild.value;
-    lastName.textContent = document.querySelector('#last-name').firstElementChild.value;
-    phone.textContent = document.querySelector('#phone').firstElementChild.value;
+        entry.append(lastName);
+        entry.append(fistName);
+        entry.append(button);
 
-    document.querySelector('#entries-container').append(entry);
+        fistName.textContent = entryD.fistName;
+        lastName.textContent = entryD.lastName;
+        phone.textContent = entryD.phone;
+    
+        document.querySelector('#entries-container').append(entry);
+    }
 
     clearForm();
 
@@ -30,12 +33,10 @@ function clearForm() {
     document.querySelector('#phone').firstElementChild.value = '';
     document.querySelector('#last-name').firstElementChild.value = '';
     document.querySelector('#first-name').firstElementChild.value = '';
-
 }
 
-function entryData () {
+function sortEntryData () {
     const entryData = {
-        id: lastName.textContent = document.querySelector('#last-name').firstElementChild.value[0],
         lastName: document.querySelector('#last-name').firstElementChild.value,
         fistName: document.querySelector('#first-name').firstElementChild.value,
         phone: document.querySelector('#phone').firstElementChild.value
@@ -43,5 +44,4 @@ function entryData () {
 
     dataArray.push(entryData);
     dataArray.sort((a, b) => (a.lastName > b.lastName ? 1 : -1));
-    return entryData;
 }
