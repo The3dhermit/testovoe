@@ -4,6 +4,11 @@ function addEntry() {
 
     sortEntryData();
 
+    const conteiner = document.querySelector('#entries-container');
+    while (conteiner.childElementCount>1) {
+        conteiner.removeChild(conteiner.lastChild);
+      };
+
     for (const entryD of dataArray) {
 
         const entry = document.createElement("div");
@@ -21,7 +26,7 @@ function addEntry() {
         lastName.textContent = entryD.lastName;
         phone.textContent = entryD.phone;
     
-        document.querySelector('#entries-container').append(entry);
+        conteiner.append(entry);
     }
 
     clearForm();
