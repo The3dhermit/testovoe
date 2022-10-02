@@ -1,3 +1,4 @@
+
 let dataArray = [];
 
 function addEntry() {
@@ -30,6 +31,7 @@ function reRender() {
         entry.append(fistName);
         entry.append(phone);
         entry.append(button);
+ 
 
         fistName.textContent = entryD.fistName;
         lastName.textContent = entryD.lastName;
@@ -46,16 +48,16 @@ function reRender() {
 
 function clearForm() {
 
-    document.querySelector('#phone').firstElementChild.value = '';
-    document.querySelector('#last-name').firstElementChild.value = '';
-    document.querySelector('#first-name').firstElementChild.value = '';
+    document.querySelector('form').reset();
 }
 
 function sortEntryData() {
+
     const entryData = {
-        lastName: document.querySelector('#last-name').firstElementChild.value,
-        fistName: document.querySelector('#first-name').firstElementChild.value,
-        phone: document.querySelector('#phone').firstElementChild.value
+        id: uuidv4(),
+        lastName: document.querySelector('#last-name').value,
+        fistName: document.querySelector('#first-name').value,
+        phone: document.querySelector('#phone').value
     }
 
     dataArray.push(entryData);
