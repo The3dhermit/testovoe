@@ -28,6 +28,7 @@ function reRender() {
 
         entry.append(lastName);
         entry.append(fistName);
+        entry.append(phone);
         entry.append(button);
 
         fistName.textContent = entryD.fistName;
@@ -41,7 +42,6 @@ function reRender() {
 
         conteiner.append(entry);
     }
-
 }
 
 function clearForm() {
