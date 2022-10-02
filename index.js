@@ -1,13 +1,21 @@
-const dataArray = [];
+let dataArray = [];
 
 function addEntry() {
 
     sortEntryData();
 
+    reRender();
+
+    clearForm();
+
+};
+
+function reRender() {
+
     const conteiner = document.querySelector('#entries-container');
-    while (conteiner.childElementCount>1) {
+    while (conteiner.childElementCount > 1) {
         conteiner.removeChild(conteiner.lastChild);
-      };
+    };
 
     for (const entryD of dataArray) {
 
@@ -25,13 +33,16 @@ function addEntry() {
         fistName.textContent = entryD.fistName;
         lastName.textContent = entryD.lastName;
         phone.textContent = entryD.phone;
-    
+
+        button.addEventListener('click', () => {
+            dataArray = dataArray.filter(x => x.lastName !== lastName.textContent);
+            reRender();
+        });
+
         conteiner.append(entry);
     }
 
-    clearForm();
-
-};
+}
 
 function clearForm() {
 
@@ -40,7 +51,7 @@ function clearForm() {
     document.querySelector('#first-name').firstElementChild.value = '';
 }
 
-function sortEntryData () {
+function sortEntryData() {
     const entryData = {
         lastName: document.querySelector('#last-name').firstElementChild.value,
         fistName: document.querySelector('#first-name').firstElementChild.value,
