@@ -1,5 +1,5 @@
-
-let dataArray = [];
+var dataArray = [];
+var uuid = require('uuid');
 
 function addEntry() {
 
@@ -32,7 +32,6 @@ function reRender() {
         entry.append(phone);
         entry.append(button);
  
-
         fistName.textContent = entryD.fistName;
         lastName.textContent = entryD.lastName;
         phone.textContent = entryD.phone;
@@ -53,8 +52,10 @@ function clearForm() {
 
 function sortEntryData() {
 
+    
+
     const entryData = {
-        id: uuidv4(),
+        id: uuid.v4(),
         lastName: document.querySelector('#last-name').value,
         fistName: document.querySelector('#first-name').value,
         phone: document.querySelector('#phone').value
