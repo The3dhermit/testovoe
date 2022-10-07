@@ -1,4 +1,7 @@
+import './style.css'
+
 const uuid = require('uuid')
+
 var dataArray = [];
 
 const form = document.querySelector('form')
