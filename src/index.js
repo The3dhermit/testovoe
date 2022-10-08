@@ -1,12 +1,18 @@
 import './style.css'
 
-const uuid = require('uuid')
-
 var dataArray = [];
+var id;
+
+const uuid = require('uuid')
 
 const form = document.querySelector('form')
 
+form.addEventListener('submit', addEntry);
+console.log("dwqdqw");
+
+
 function addEntry() {
+
 
     sortEntryData();
 
@@ -42,25 +48,33 @@ function reRender() {
         phone.textContent = entryD.phone;
 
         button.addEventListener('click', () => {
-            dataArray = dataArray.filter(x => x.lastName !== lastName.textContent);
+            console.log("remove event");
+            dataArray = dataArray.filter(x => x.id !== id);
             reRender();
         });
 
         conteiner.append(entry);
+        console.log(dataArray);
     }
+    var content = conteiner.innerHTML;
+    conteiner.innerHTML = content;
+
 }
 
 function clearForm() {
 
-    document.querySelector('form').reset();
+    form.reset();
 }
 
 function sortEntryData() {
 
-    
-    console.log('sert entry data')
+    console.log('sert entry data');
+    console.log('dataArray');
+    id = uuid.v4();
+
+
     const entryData = {
-        id: uuid.v4(),
+        id: id,
         lastName: document.querySelector('#last-name').value,
         fistName: document.querySelector('#first-name').value,
         phone: document.querySelector('#phone').value
@@ -68,4 +82,5 @@ function sortEntryData() {
 
     dataArray.push(entryData);
     dataArray.sort((a, b) => (a.lastName > b.lastName ? 1 : -1));
+
 }
