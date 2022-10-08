@@ -1,10 +1,20 @@
-html{
+html {
     background-color: rgb(107, 107, 107);
 }
 
-form{
+body {
+background: linear-gradient(gray, rgb(113, 144, 151));
+    width: 20rem;
     margin: auto;
-    background-color: rgba(121, 185, 185, 0.575);
+    padding: 1.25rem 0px 1.25rem 0px;
+    border-radius: 1.25rem;
+
+}
+
+
+form {
+    margin: auto;
+    background-color: rgba(124, 184, 184, 0.575);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,17 +22,18 @@ form{
     border-radius: 1.25rem;
     padding-top: 20px;
     padding-bottom: 10px;
+    
 }
-#entries-container{
+
+#entries-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#first-name{
 
-}
+#first-name {}
 
-.formFields{
+.formFields {
     background-color: rgb(248, 234, 217);
     border-radius: .7125rem;
     margin-bottom: .625rem;
@@ -30,4 +41,23 @@ form{
     width: 15.125rem;
     font-size: 1.125rem;
     text-align: center;
+}
+
+.phone-book-title {
+    justify-content: center;
+    display: flex;
+    color: rgb(248, 234, 217);
+    text-shadow: 2px 2px rgb(88, 88, 88);
+}
+
+.book_entry{
+    display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color:  rgba(124, 184, 184, 0.575);
+width: 17.5625rem;
+border-radius: 1.25rem;
+padding-bottom: 1.25rem;
+margin-top: 1.25rem;
 }

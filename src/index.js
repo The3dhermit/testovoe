@@ -1,15 +1,19 @@
 import './style.css'
 
-var dataArray = [];
-var id;
+var dataArray = [{
+    id: "plug",
+    lastName: "Doe",
+    fistName: "John",
+    phone: "+380934272152"
+}];
 
 const uuid = require('uuid')
 
 const form = document.querySelector('form')
 
 form.addEventListener('submit', addEntry);
-console.log("dwqdqw");
 
+reRender();
 
 function addEntry() {
 
@@ -25,13 +29,13 @@ function addEntry() {
 function reRender() {
 
     const conteiner = document.querySelector('#entries-container');
-    while (conteiner.childElementCount > 1) {
-        conteiner.removeChild(conteiner.lastChild);
-    };
+
+    conteiner.innerHTML = '';
 
     for (const entryD of dataArray) {
 
         const entry = document.createElement("div");
+        entry.classList.add("book_entry")
         const fistName = document.createElement("h4");
         const lastName = document.createElement("h4");
         const phone = document.createElement("h4");
@@ -49,16 +53,15 @@ function reRender() {
 
         button.addEventListener('click', () => {
             console.log("remove event");
-            dataArray = dataArray.filter(x => x.id !== id);
-            reRender();
+            if (entryD.id !== "plug") {
+                dataArray = dataArray.filter(x => x.id !== entryD.id);
+                reRender();
+            }
         });
 
         conteiner.append(entry);
         console.log(dataArray);
     }
-    var content = conteiner.innerHTML;
-    conteiner.innerHTML = content;
-
 }
 
 function clearForm() {
@@ -70,11 +73,10 @@ function sortEntryData() {
 
     console.log('sert entry data');
     console.log('dataArray');
-    id = uuid.v4();
 
 
     const entryData = {
-        id: id,
+        id: uuid.v4(),
         lastName: document.querySelector('#last-name').value,
         fistName: document.querySelector('#first-name').value,
         phone: document.querySelector('#phone').value
@@ -82,5 +84,4 @@ function sortEntryData() {
 
     dataArray.push(entryData);
     dataArray.sort((a, b) => (a.lastName > b.lastName ? 1 : -1));
-
 }
