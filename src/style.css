@@ -59,6 +59,15 @@ form {
     border-radius: 1.25rem;
     padding-bottom: 1.25rem;
     margin-top: 1.25rem;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.book_entry * {
+    background-color: rgba(195, 209, 209, 0.575);
+    padding: 0px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 5px;
 }
 
 .button {
