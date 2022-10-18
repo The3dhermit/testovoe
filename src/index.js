@@ -7,11 +7,35 @@ var dataArray = [{
     phone: "+380934272152"
 }];
 
+var submitCheck = false;
+
 const uuid = require('uuid')
 
 const form = document.querySelector('form')
 
-form.addEventListener('submit', addEntry);
+form.addEventListener('submit', (event) => {
+    if (submitCheck) {
+        addEntry();
+    }
+    else {
+        event.preventDefault();
+    }
+}
+);
+
+var regNameCheck = /^[a-zA-Z]+$/;
+
+var lNameErrorM = document.getElementById("lName");
+var fNameErrorM = document.getElementById('fName');
+var phoneErrorM = document.getElementById("phoneEM");
+
+lNameErrorM.style.display = "none";
+fNameErrorM.style.display = "none";
+phoneErrorM.style.display = "none";
+
+nameInputCheck(document.getElementById('first-name'), fNameErrorM);
+nameInputCheck(document.getElementById('last-name'), lNameErrorM);
+phoneInputCheck(document.getElementById('phone'), phoneErrorM);
 
 reRender();
 
@@ -25,6 +49,53 @@ function addEntry() {
     clearForm();
 
 };
+
+function nameInputCheck(inputField, errorMessege) {
+
+    inputField.addEventListener("input", () => {
+        if (inputField.value && inputField.value[0] === ' ') {
+            errorMessege.style.display = "flex";
+            errorMessege.textContent = "This field can't start with space.";
+            submitCheck = false;
+        }
+        else if (inputField.value && !regNameCheck.test(inputField.value)
+        ) {
+            errorMessege.style.display = "flex";
+            errorMessege.textContent = "Only latin characters";
+            submitCheck = false;
+        }
+        else {
+            errorMessege.style.display = "none";
+            submitCheck = true;
+        }
+    });
+}
+
+function phoneInputCheck(inputField, errorMessege) {
+
+    inputField.addEventListener("input", () => {
+        if (inputField.value && !/\+380/.test(inputField.value)) {
+            errorMessege.style.display = "flex";
+            errorMessege.textContent = "Number must start with +380";
+            submitCheck = false;
+        }
+        else if (inputField.value && !/[0-9]{12}/.test(inputField.value)
+        ) {
+            errorMessege.style.display = "flex";
+            errorMessege.textContent = "Enter full number";
+            submitCheck = false;
+        }
+        else if (inputField.value.length > 13) {
+            errorMessege.style.display = "flex";
+            errorMessege.textContent = "Number is too long";
+            submitCheck = false;
+        }
+        else {
+            errorMessege.style.display = "none";
+            submitCheck = true;
+        }
+    });
+}
 
 function reRender() {
 
@@ -40,6 +111,7 @@ function reRender() {
         const lastName = document.createElement("h4");
         const phone = document.createElement("h4");
         const button = document.createElement("button");
+        button.className = "button";
         button.innerHTML = "Remove";
 
         entry.append(lastName);
@@ -52,7 +124,6 @@ function reRender() {
         phone.textContent = entryD.phone;
 
         button.addEventListener('click', () => {
-            console.log("remove event");
             if (entryD.id !== "plug") {
                 dataArray = dataArray.filter(x => x.id !== entryD.id);
                 reRender();
